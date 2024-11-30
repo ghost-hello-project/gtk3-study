@@ -50,7 +50,7 @@ if(WIN32)
     message(STATUS "GTK3_LIBRARY_DIRS:${GTK3_LIBRARY_DIRS}")
     message(STATUS "GTK3_LIBRARIES:${GTK3_LIBRARIES}")
 
-    # windows 平台在编译时最好追截此链接库目录,否则动态库查找比较麻烦
+    # windows 平台在编译时最好追追加链接库目录,否则动态库查找比较麻烦
     link_directories(${GTK3_LIBRARY_DIRS})
 endif()
 
