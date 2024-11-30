@@ -33,13 +33,26 @@ set(bin_dir ${dist_dir}/bin)
 set(sbin_dir ${dist_dir}/sbin)
 
 # 内部库
+if(UNIX)
+    # glib-2.0
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(GLIB REQUIRED glib-2.0)
 
-# glib-2.0
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(GLIB REQUIRED glib-2.0)
+    message(STATUS "GLIB_INCLUDE_DIRS:${GLIB_INCLUDE_DIRS}")
+    message(STATUS "GLIB_LIBRARIES:${GLIB_LIBRARIES}")
+endif()
 
-message(STATUS "GLIB_INCLUDE_DIRS:${GLIB_INCLUDE_DIRS}")
-message(STATUS "GLIB_LIBRARIES:${GLIB_LIBRARIES}")
+if(WIN32)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
+
+    message(STATUS "GTK3_INCLUDE_DIRS:${GTK3_INCLUDE_DIRS}")
+    message(STATUS "GTK3_LIBRARY_DIRS:${GTK3_LIBRARY_DIRS}")
+    message(STATUS "GTK3_LIBRARIES:${GTK3_LIBRARIES}")
+
+    # windows 平台在编译时最好追截此链接库目录,否则动态库查找比较麻烦
+    link_directories(${GTK3_LIBRARY_DIRS})
+endif()
 
 # 编译相关配置 ###########################################################################################################
 
