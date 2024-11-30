@@ -43,7 +43,7 @@ message(STATUS "GTK3_LIBRARY_DIRS:${GTK3_LIBRARY_DIRS}")
 message(STATUS "GTK3_LIBRARIES:${GTK3_LIBRARIES}")
 
 if(WIN32)
-    # windows 平台在编译时最好追截此链接库目录,否则动态库查找比较麻烦
+    # windows 平台在编译时最好追加此链接库目录,否则动态库查找比较麻烦
     link_directories(${GTK3_LIBRARY_DIRS})
 
     # 运行时关闭 cmd 窗口的显示
