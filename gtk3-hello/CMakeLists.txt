@@ -42,6 +42,14 @@ message(STATUS "GTK3_INCLUDE_DIRS:${GTK3_INCLUDE_DIRS}")
 message(STATUS "GTK3_LIBRARY_DIRS:${GTK3_LIBRARY_DIRS}")
 message(STATUS "GTK3_LIBRARIES:${GTK3_LIBRARIES}")
 
+if(WIN32)
+    # windows 平台在编译时最好追截此链接库目录,否则动态库查找比较麻烦
+    link_directories(${GTK3_LIBRARY_DIRS})
+
+    # 运行时关闭 cmd 窗口的显示
+    add_compile_options(-DGRAVER_MIUI_WIN32_HIDE_CONTROL)
+endif()
+
 # 编译相关配置 ###########################################################################################################
 
 # 生成 compile_commands.json

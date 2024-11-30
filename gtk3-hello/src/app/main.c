@@ -1,6 +1,10 @@
 #include <gtk/gtk.h>
 //#include "temp.c"
 
+#if defined(_WIN32)
+    #include <windows.h>
+#endif
+
 /* 这是一个回调函数。data 参数在本示例中被忽略。
  * 后面有更多的回调函数示例。*/
 void hello(GtkWidget *widget, gpointer data) {
@@ -25,6 +29,12 @@ void destroy(GtkWidget *widget, gpointer data) {
 }
 
 int main(int argc, char *argv[]) {
+#if defined(_WIN32)
+    #ifdef GRAVER_MIUI_WIN32_HIDE_CONTROL
+    FreeConsole();
+    #endif
+#endif
+
     /* GtkWidget 是构件的存储类型 */
     GtkWidget *window;
     GtkWidget *button;

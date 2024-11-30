@@ -65,7 +65,7 @@
             "label": "run-release",
             "type": "shell",
             "windows": {
-                "command": "cd build/windows-release/dist/bin && ./qt-hello",
+                "command": "cd build/windows-release/dist/bin && ./gtk3-hello",
             },
             "linux": {
                 "command": "cd build/linux-release/dist/bin && ./gtk3-hello",
