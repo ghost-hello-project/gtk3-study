@@ -78,10 +78,10 @@
             "label": "run-test-common",
             "type": "shell",
             "windows": {
-                "command": "cd build/windows-release/dist/test && ./qt-hello_test testCommon",
+                "command": "cd build/windows-release/dist/test && ./glib-hello-test -p /test_common",
             },
             "linux": {
-                "command": "cd build/linux-release/dist/test && ./qt-hello_test testCommon",
+                "command": "cd build/linux-release/dist/test && ./glib-hello-test -p /test_common",
             },
             "dependsOn": [
                 "build-release"

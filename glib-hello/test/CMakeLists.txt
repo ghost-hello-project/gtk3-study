@@ -21,16 +21,7 @@ endif()
 # 项目配置 ##############################################################################################################
 
 # 项目名称和语言
-project(glib-hello LANGUAGES C VERSION 1.0.0)
-
-# 发布目录
-set(dist_dir ${CMAKE_BINARY_DIR}/dist)
-
-# 二进制文件目录
-set(bin_dir ${dist_dir}/bin)
-
-# 启动文件目录
-set(sbin_dir ${dist_dir}/sbin)
+project(glib-hello-test LANGUAGES C VERSION 1.0.0)
 
 # 内部库
 if(UNIX)
@@ -60,13 +51,21 @@ endif()
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # 包含全局头文件
-include_directories(${PROJECT_SOURCE_DIR}/include
+include_directories(${CMAKE_SOURCE_DIR}/include
     ${GLIB_INCLUDE_DIRS}
+    ${PROJECT_SOURCE_DIR}
 )
 
-# 添加子目录
-add_subdirectory(src)
+# 生成测试
+aux_source_directory(. SRCS_MAIN)
+add_executable(${PROJECT_NAME} ${SRCS_MAIN})
 
-# 启用测试 ##############################################################################################################
-enable_testing()
-add_subdirectory(test)
+set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${dist_dir}/test)
+
+target_link_libraries(${PROJECT_NAME}
+    ${GLIB_LIBRARIES}
+)
+
+if(UNIX)
+    set_target_properties(${PROJECT_NAME} PROPERTIES INSTALL_RPATH "\${ORIGIN}/../lib")
+endif()

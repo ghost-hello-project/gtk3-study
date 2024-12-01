@@ -17,9 +17,10 @@
             "name": "linux_test_common",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceRoot}/build/linux-debug/dist/test/glib-hello_test",
+            "program": "${workspaceRoot}/build/linux-debug/dist/test/glib-hello-test",
             "args": [
-                "testCommon"
+                "-p",
+                "/test_common"
             ],
             "cwd": "${workspaceFolder}/build/linux-debug/dist/bin",
             "preLaunchTask": "build-debug"
